@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+    --font-open-sans: "Open Sans", "sans-serif";
+    --font-pacifico: "Pacifico", "sans-serif";
+    --font-dosis: "Dosis", "sans-serif";
+    --color-primary-500: #337ab7;
+}
