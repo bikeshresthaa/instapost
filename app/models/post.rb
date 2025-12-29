@@ -7,4 +7,6 @@ class Post < ApplicationRecord
   validates :photo, :description, presence: true
 
   acts_as_votable
+
+  delegate :email, to: :user, prefix: true
 end
