@@ -1,10 +1,8 @@
-<p style="color: green"><%= notice %></p>
 
-<%= render @user %>
+<%= @user.email.split('@').first %>
 
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+<%= pluralize(@user.posts.count, 'post') %>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
-</div>
+<% @user.posts.each do |post| %>
+  <%= image_tag post.photo, class: 'mb-4' %>
+<% end %>
