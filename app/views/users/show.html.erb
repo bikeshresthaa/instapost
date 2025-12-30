@@ -1,5 +1,4 @@
-
-<%= @user.email.split('@').first %>
+<%= username(@user.email) %>
 
 <%= pluralize(@user.posts.count, 'post') %>
 
