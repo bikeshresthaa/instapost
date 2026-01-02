@@ -2,7 +2,7 @@
   <% @posts.each do |post| %>
     <div class='flex flex-col items-center bg-white w-3/5 my-8 p-4 rounded-lg shadow-md'>
       <div class="flex justify-start space-x-4 py-2 px-2 items-center w-full">
-        <div class="w-6 h-6 rounded-full overflow-hidden bg-gray-200">
+        <div class="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
           <% if post.user.photo.attached? %>
             <%= image_tag post.user.photo, class: 'w-full h-full rounded-full' %>
           <% end %>
@@ -11,7 +11,7 @@
         <div class="text-gray-400 text-xs italic"><%= time_ago_in_words(post.created_at) %> ago</div>
       </div>
       <div class="flex justify-center">
-        <%= image_tag post.photo, class: 'md:max-w-[50%] mb-2' %>
+        <%= image_tag post.photo, class: 'max-w-2xl md:max-w-[50%] mb-2' %>
       </div>
 
       <div class="flex justify-between items-center w-full">
