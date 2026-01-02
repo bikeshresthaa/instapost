@@ -19,6 +19,14 @@
     <% end %>
 
     <div>
+      <%= form.label :photo, "Avatar", class: "mb-2 text-lg font-lg text-black block" %>
+      <%= form.file_field :photo,
+        class: "border border-gray-400 text-black text-sm rounded-lg
+                focus:ring-blue-500 focus:border-blue-500
+                w-full block p-2.5" %>
+    </div>
+
+    <div>
       <%= form.label :email, nil, class: "mb-2 text-lg font-lg text-black block" %>
       <%= form.text_field :email,
         class: "border border-gray-400 text-black text-sm rounded-lg

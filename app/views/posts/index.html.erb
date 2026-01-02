@@ -2,7 +2,11 @@
   <% @posts.each do |post| %>
     <div class='flex flex-col items-center bg-white w-3/5 my-8 p-4 rounded-lg shadow-md'>
       <div class="flex justify-start space-x-4 py-2 px-2 items-center w-full">
-        <div><%= image_tag post.user.photo if post.user.photo.attached? %></div>
+        <div class="w-6 h-6 rounded-full overflow-hidden bg-gray-200">
+          <% if post.user.photo.attached? %>
+            <%= image_tag post.user.photo, class: 'w-full h-full rounded-full' %>
+          <% end %>
+        </div>
         <div class="font-bold text-xl"><%= username(post.user_email) %></div>
         <div class="text-gray-400 text-xs italic"><%= time_ago_in_words(post.created_at) %> ago</div>
       </div>
