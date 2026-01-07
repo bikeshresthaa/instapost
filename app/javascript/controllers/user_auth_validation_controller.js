@@ -3,7 +3,11 @@ import { displayError, clearError } from "./error_display"
 
 // Connects to data-controller="user-auth-validation"
 export default class extends Controller {
-  static targets = [ "emailInput", "passwordInput", "passwordConfirmation" ]
+  static targets = [ "emailInput", "passwordInput", "passwordConfirmationInput" ]
+
+  connect() {
+    console.log("User Auth Validation Controller connected");
+  }
 
   validateEmail() {
     const email = this.emailInputTarget.value;
@@ -30,13 +34,13 @@ export default class extends Controller {
 
   validatePasswordConfirmation() {
     const password = this.passwordInputTarget.value;
-    const passwordConfirmation = this.passwordConfirmationTarget.value;
-    const confirmationError = this.passwordConfirmationTarget.nextElementSibling;
+    const passwordConfirmation = this.passwordConfirmationInputTarget.value;
+    const confirmationError = this.passwordConfirmationInputTarget.nextElementSibling;
 
     if (password !== passwordConfirmation) {
-      displayError(this.passwordConfirmationTarget, confirmationError, "Passwords do not match!");
+      displayError(this.passwordConfirmationInputTarget, confirmationError, "Passwords do not match!");
     } else {
-      clearError(this.passwordConfirmationTarget, confirmationError);
+      clearError(this.passwordConfirmationInputTarget, confirmationError);
     }
   }
   

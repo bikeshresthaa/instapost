@@ -3,7 +3,7 @@
     <span>Sign Up</span>
   </div>
 
-  <%= form_with(model: user, class: "flex flex-col justify-between gap-4 w-full max-w-sm") do |form| %>
+  <%= form_with(model: user, data: { controller: "user-auth-validation" }, class: "flex flex-col justify-between gap-4 w-full max-w-sm") do |form| %>
 
     <% if user.errors.any? %>
       <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
@@ -29,26 +29,36 @@
     <div>
       <%= form.label :email, nil, class: "mb-2 text-lg font-lg text-black block" %>
       <%= form.text_field :email,
+        data: { action: "blur->user-auth-validation#validateEmail",
+                user_auth_validation_target: "emailInput" }, 
         class: "border border-gray-400 text-black text-sm rounded-lg
                 focus:ring-blue-500 focus:border-blue-500
                 w-full block p-2.5" %>
+      <p class="text-sm text-red-600 hidden"></p>
+      
     </div>
 
     <div>
       <%= form.label :password, nil, class: "mb-2 text-lg font-lg text-black block" %>
       <%= form.password_field :password,
+        data: { action: "blur->user-auth-validation#validatePassword",
+                user_auth_validation_target: "passwordInput" },
         class: "border border-gray-400 text-black text-sm rounded-lg
                 focus:ring-blue-500 focus:border-blue-500
                 w-full block p-2.5" %>
+      <p class="text-sm text-red-600 hidden"></p>
     </div>
 
     <div>
       <%= form.label :password_confirmation, "Confirm Password",
         class: "mb-2 text-lg font-lg text-black block" %>
       <%= form.password_field :password_confirmation,
+        data: { action: "blur->user-auth-validation#validatePasswordConfirmation",
+                user_auth_validation_target: "passwordConfirmationInput" },
         class: "border border-gray-400 text-black text-sm rounded-lg
                 focus:ring-blue-500 focus:border-blue-500
                 w-full block p-2.5" %>
+      <p class="text-sm text-red-600 hidden"></p>
     </div>
 
     <div class="flex justify-center">
