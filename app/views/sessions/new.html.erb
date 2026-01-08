@@ -6,15 +6,17 @@
     </div>
   <% end %>
   <div class="flex justify-center text-5xl text-[#337ab7]"><span>Login</span></div>
-  <%= form_tag sessions_path, class: "flex flex-col justify-between align-center gap-4 w-full max-w-sm mt-6" do |form| %>
+  <%= form_tag sessions_path, data: { controller: "user-auth-validation", action: "submit->user-auth-validation#validateLogin" }, class: "flex flex-col justify-between align-center gap-4 w-full max-w-sm mt-6" do |form| %>
   
     <div>
-      <%= label_tag :email, nil, class: "mb-2 text-lg font-lg text-black" %>
-      <%= text_field_tag :email, nil, class: "border border-gray-400 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full block p-2.5 " %>
+      <%= label_tag :email, nil,class: "mb-2 text-lg font-lg text-black" %>
+      <%= text_field_tag :email, nil, data: { action: "blur->user-auth-validation#validateEmail", user_auth_validation_target: "emailInput" }, class: "border border-gray-400 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full block p-2.5 " %>
+      <p class="text-sm text-red-600 hidden"></p>
     </div>
     <div>
       <%= label_tag :password, nil, class: "mb-2 text-lg font-lg text-black" %>
-      <%= password_field_tag :password, nil, class: "border w-full block border-gray-400 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " %>
+      <%= password_field_tag :password, nil, data: { action: "blur->user-auth-validation#validatePassword", user_auth_validation_target: "passwordInput" }, class: "border w-full block border-gray-400 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " %>
+      <p class="text-sm text-red-600 hidden"></p>
     </div>
     <div class="flex justify-center align-center">
       <%= submit_tag "Login", class: "text-white mt-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-lg rounded-lg text-lg sm:w-auto px-2 py-1 text-center " %>

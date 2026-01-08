@@ -43,12 +43,21 @@ export default class extends Controller {
     }
   }
 
-  validateForm(event){
+  validateSignup(event){
     let emailValid = this.validateEmail();
     let passwordValid = this.validatePassword();
     let passwordConfirmationValid = this.validatePasswordConfirmation();
 
     if (!emailValid || !passwordValid || !passwordConfirmationValid) {
+      event.preventDefault();
+    }
+  }
+
+  validateLogin(event) {
+    let emailValid = this.validateEmail();
+    let passwordValid = this.validatePassword();
+
+    if (!emailValid || !passwordValid) {
       event.preventDefault();
     }
   }
