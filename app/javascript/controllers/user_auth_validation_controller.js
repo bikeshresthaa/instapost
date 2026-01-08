@@ -15,6 +15,7 @@ export default class extends Controller {
       return false;
     }else{
       clearError(this.emailInputTarget, emailError);
+      return true;
     }
   }
 
@@ -27,6 +28,7 @@ export default class extends Controller {
       return false;
     } else {
       clearError(this.passwordInputTarget, passwordError);
+      return true;
     }
   }
 
@@ -40,6 +42,7 @@ export default class extends Controller {
       return false;
     } else {
       clearError(this.passwordConfirmationInputTarget, confirmationError);
+      return true;
     }
   }
 

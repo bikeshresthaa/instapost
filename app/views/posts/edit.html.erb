@@ -5,7 +5,7 @@
       Edit Post
     </h1>
 
-    <%= simple_form_for @post, html: { class: "space-y-5" } do |f| %>
+    <%= simple_form_for @post, data: { controller: "post-validation", action: "submit->post-validation#validatePost" }, html: { class: "space-y-5", novalidate: true } do |f| %>
 
       <div>
         <%= f.input :photo,
@@ -16,8 +16,9 @@
                     file:rounded-lg file:border-0
                     file:text-sm file:font-semibold
                     file:bg-blue-50 file:text-blue-700
-                    hover:file:bg-blue-100"
+                    hover:file:bg-blue-100", data: { action: "change->post-validation#validatePhoto", post_validation_target: "photoInput" }
           } %>
+        <p class="text-sm text-red-600 hidden" data-post-validation-target="photoError"></p>
       </div>
 
       <div>
@@ -28,8 +29,9 @@
             rows: 8,
             class: "w-full border border-gray-400 rounded-lg
                     text-sm text-gray-900 p-3
-                    focus:ring-blue-500 focus:border-blue-500"
+                    focus:ring-blue-500 focus:border-blue-500", data: { action: "blur->post-validation#validateDescription", post_validation_target: "descriptionInput" }
           } %>
+        <p class="text-sm text-red-600 hidden" data-post-validation-target="descriptionError"></p>
       </div>
 
       <div class="flex justify-center">
