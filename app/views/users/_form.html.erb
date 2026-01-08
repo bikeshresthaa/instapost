@@ -3,7 +3,7 @@
     <span>Sign Up</span>
   </div>
 
-  <%= form_with(model: user, data: { controller: "user-auth-validation" }, class: "flex flex-col justify-between gap-4 w-full max-w-sm") do |form| %>
+  <%= form_with(model: user, data: { controller: "user-auth-validation", action: "submit->user-auth-validation#validateForm" }, class: "flex flex-col justify-between gap-4 w-full max-w-sm") do |form| %>
 
     <% if user.errors.any? %>
       <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">

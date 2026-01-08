@@ -5,10 +5,6 @@ import { displayError, clearError } from "./error_display"
 export default class extends Controller {
   static targets = [ "emailInput", "passwordInput", "passwordConfirmationInput" ]
 
-  connect() {
-    console.log("User Auth Validation Controller connected");
-  }
-
   validateEmail() {
     const email = this.emailInputTarget.value;
     const emailError = this.emailInputTarget.nextElementSibling;
@@ -16,6 +12,7 @@ export default class extends Controller {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)){
       displayError(this.emailInputTarget, emailError, "Please enter a valid email address!");
+      return false;
     }else{
       clearError(this.emailInputTarget, emailError);
     }
@@ -27,6 +24,7 @@ export default class extends Controller {
 
     if (password.length < 8) {
       displayError(this.passwordInputTarget, passwordError, "Password must be at least 8 characters long!");
+      return false;
     } else {
       clearError(this.passwordInputTarget, passwordError);
     }
@@ -39,8 +37,19 @@ export default class extends Controller {
 
     if (password !== passwordConfirmation) {
       displayError(this.passwordConfirmationInputTarget, confirmationError, "Passwords do not match!");
+      return false;
     } else {
       clearError(this.passwordConfirmationInputTarget, confirmationError);
+    }
+  }
+
+  validateForm(event){
+    let emailValid = this.validateEmail();
+    let passwordValid = this.validatePassword();
+    let passwordConfirmationValid = this.validatePasswordConfirmation();
+
+    if (!emailValid || !passwordValid || !passwordConfirmationValid) {
+      event.preventDefault();
     }
   }
   
